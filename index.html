@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NON:SONIC</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #050608;
+  color: #e9edf5;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app {
+  width: 100%;
+  max-width: 520px;
+  min-height: 100vh;
+  margin: auto;
+  background:
+    radial-gradient(circle at 50% 0%, #10252a 0%, #070a0d 35%, #050608 70%);
+  overflow: hidden;
+}
+
+/* =========================
+   상단
+========================= */
+
+.top-bar {
+  height: 76px;
+  padding: 15px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #1d252d;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-box {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #00eaff;
+  border-radius: 9px;
+  color: #00eaff;
+  font-weight: bold;
+}
+
+.logo strong {
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.user-rank {
+  padding: 9px 13px;
+  border: 1px solid #252e39;
+  border-radius: 20px;
+  color: #00eaff;
+  font-size: 11px;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+  padding: 20px 18px 30px;
+}
+
+/* =========================
+   공통 카드
+========================= */
+
+.card {
+  margin-bottom: 16px;
+  padding: 20px;
+  background: #10141c;
+  border: 1px solid #1c2932;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 234, 255, 0.04);
+}
+
+.card-title {
+  margin-bottom: 17px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #dfe7ef;
+}
+
+/* =========================
+   GAME ID
+========================= */
+
+.profile-card {
+  border-color: #07596a;
+}
+
+.profile-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-icon {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 13px;
+  background: #151b27;
+  border: 1px solid #00eaff;
+  color: #00eaff;
+  font-weight: bold;
+}
+
+.small-title {
+  display: block;
+  margin-bottom: 4px;
+  color: #8794a5;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.profile-left h2 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.complete {
+  padding: 7px 9px;
+  border-radius: 6px;
+  background: #0c302c;
+  color: #00eaa4;
+  font-size: 8px;
+  font-weight: bold;
+}
+
+/* =========================
+   참가자 정보
+========================= */
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+
+.info-box {
+  padding: 13px;
+  border: 1px solid #222e3a;
+  border-radius: 11px;
+}
+
+.info-box span,
+.record-box span {
+  display: block;
+  margin-bottom: 6px;
+  color: #778392;
+  font-size: 9px;
+}
+
+.info-box strong {
+  font-size: 12px;
+}
+
+/* =========================
+   점수
+========================= */
+
+.score-card {
+  text-align: center;
+}
+
+.section-label {
+  color: #8491a1;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.main-score {
+  margin-top: 8px;
+  font-size: 64px;
+  font-weight: bold;
+  line-height: 1;
+  color: #20f4ff;
+  text-shadow: 0 0 15px rgba(0, 234, 255, 0.7);
+}
+
+.main-score small {
+  color: #647082;
+  font-size: 22px;
+}
+
+.score-rank {
+  margin-top: 9px;
+  color: #00eaff;
+  font-size: 11px;
+}
+
+/* =========================
+   세부 점수
+========================= */
+
+.detail-scores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 28px;
+  padding-top: 25px;
+  border-top: 1px solid #202934;
+}
+
+.score-detail {
+  text-align: center;
+}
+
+.circle {
+  width: 66px;
+  height: 66px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #111720;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.cyan .circle {
+  border: 5px solid #00eaff;
+  color: #00eaff;
+}
+
+.pink .circle {
+  border: 5px solid #ff008c;
+  color: #ff008c;
+}
+
+.purple .circle {
+  border: 5px solid #a84cff;
+  color: #a84cff;
+}
+
+.score-detail > span {
+  display: block;
+  margin-top: 10px;
+  font-size: 10px;
+  color: #c0c7d2;
+}
+
+.score-detail button {
+  margin-top: 5px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #758394;
+  font-size: 8px;
+  cursor: pointer;
+}
+
+/* =========================
+   게임 기록
+========================= */
+
+.record-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+
+.record-box {
+  padding: 16px;
+  border-radius: 12px;
+  background: #0c1017;
+  border: 1px solid #202a35;
+}
+
+.record-box strong {
+  font-size: 18px;
+}
+
+/* =========================
+   플레이 영상
+========================= */
+
+.video {
+  height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #161b24, #090b0f);
+  border: 1px solid #252e38;
+  color: #657284;
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.play-button {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #00eaff;
+  color: #071014;
+  font-size: 18px;
+  box-shadow: 0 0 25px rgba(0, 234, 255, 0.4);
+}
+
+/* =========================
+   쿠폰
+========================= */
+
+.coupon-button {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #00eaff;
+  border-radius: 11px;
+  background: #071419;
+  color: #00eaff;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.coupon-button:hover {
+  background: #0b252b;
+}
+
+.coupon-result {
+  display: none;
+  margin-top: 12px;
+  padding: 22px;
+  text-align: center;
+  border-radius: 13px;
+  background: #090d13;
+  border: 1px dashed #00eaff;
+}
+
+.coupon-result span {
+  color: #7c8898;
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.coupon-result strong {
+  display: block;
+  margin: 10px 0;
+  color: #00eaff;
+  font-size: 25px;
+  letter-spacing: 3px;
+}
+
+.coupon-result p {
+  margin: 0;
+  color: #929eac;
+  font-size: 10px;
+}
+
+/* =========================
+   팝업
+========================= */
+
+.popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.75);
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+}
+
+.popup-box {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  padding: 25px;
+  background: #11161e;
+  border: 1px solid #00eaff;
+  border-radius: 18px;
+}
+
+.popup-box > span {
+  color: #00eaff;
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.popup-box h2 {
+  margin: 10px 0;
+  font-size: 22px;
+}
+
+.popup-box p {
+  color: #8b98a8;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 12px;
+  border: none;
+  background: none;
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  padding: 30px;
+  text-align: center;
+  border-top: 1px solid #1b232c;
+  color: #566170;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+/* =========================
+   모바일
+========================= */
+
+@media (max-width: 500px) {
+
+  main {
+    padding: 12px 12px 25px;
+  }
+
+  .top-bar {
+    height: 70px;
+  }
+
+  .logo strong {
+    font-size: 18px;
+  }
+
+  .profile-left h2 {
+    font-size: 16px;
+  }
+
+  .detail-scores {
+    gap: 5px;
+  }
+
+  .circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .score-detail > span {
+    font-size: 9px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- 상단 -->
+  <header class="top-bar">
+
+    <div class="logo">
+      <div class="logo-box">N</div>
+      <strong>NON:SONIC</strong>
+    </div>
+
+    <div class="user-rank">
+      TOP 12%
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <!-- GAME ID -->
+    <section class="card profile-card">
+
+      <div class="profile-top">
+
+        <div class="profile-left">
+
+          <div class="profile-icon">N</div>
+
+          <div>
+            <span class="small-title">GAME ID</span>
+            <h2>#NS-2026-001</h2>
+          </div>
+
+        </div>
+
+        <div class="complete">
+          COMPLETE
+        </div>
+
+      </div>
+
+
+      <div class="info-grid">
+
+        <div class="info-box">
+          <span>참가자</span>
+          <strong>홍길동</strong>
+        </div>
+
+        <div class="info-box">
+          <span>게임 일시</span>
+          <strong>2026.09.13 16:20</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- 종합 점수 -->
+    <section class="card score-card">
+
+      <span class="section-label">
+        종합 게임 점수
+      </span>
+
+      <div class="main-score">
+        94
+        <small>/100</small>
+      </div>
+
+      <div class="score-rank">
+        ● TOP 12%
+      </div>
+
+
+      <div class="detail-scores">
+
+        <div class="score-detail cyan">
+
+          <div class="circle">
+            <strong>96%</strong>
+          </div>
+
+          <span>게임 정확도</span>
+
+          <button onclick="showDetail('정확도')">
+            상세보기 ›
+          </button>
+
+        </div>
+
+
+        <div class="score-detail pink">
+
+          <div class="circle">
+            <strong>92%</strong>
+          </div>
+
+          <span>반응 속도</span>
+
+          <button onclick="showDetail('반응 속도')">
+            상세보기 ›
+          </button>
+
+        </div>
+
+
+        <div class="score-detail purple">
+
+          <div class="circle">
+            <strong>94%</strong>
+          </div>
+
+          <span>게임 기록</span>
+
+          <button onclick="showDetail('게임 기록')">
+            상세보기 ›
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- 게임 기록 -->
+    <section class="card record-card">
+
+      <div class="card-title">
+        게임 기록
+      </div>
+
+      <div class="record-grid">
+
+        <div class="record-box">
+          <span>플레이 시간</span>
+          <strong>03:42</strong>
+        </div>
+
+        <div class="record-box">
+          <span>전체 순위</span>
+          <strong>12위</strong>
+        </div>
+
+        <div class="record-box">
+          <span>참가자 수</span>
+          <strong>128명</strong>
+        </div>
+
+        <div class="record-box">
+          <span>최고 점수</span>
+          <strong>100점</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- 플레이 영상 -->
+    <section class="card video-card">
+
+      <div class="card-title">
+        플레이 영상
+      </div>
+
+      <div class="video">
+
+        <div class="play-button">
+          ▶
+        </div>
+
+        <span>GAME PLAY VIDEO</span>
+
+      </div>
+
+    </section>
+
+
+    <!-- 쿠폰 -->
+    <section class="card coupon-card">
+
+      <div class="card-title">
+        쿠폰
+      </div>
+
+      <button class="coupon-button" onclick="showCoupon()">
+        쿠폰 보기
+      </button>
+
+      <div class="coupon-result" id="coupon">
+
+        <span>COUPON</span>
+
+        <strong>NONSONIC10</strong>
+
+        <p>10% 할인 쿠폰</p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    NON:SONIC
+  </footer>
+
+</div>
+
+
+<!-- 상세보기 팝업 -->
+<div class="popup" id="popup">
+
+  <div class="popup-box">
+
+    <button class="close" onclick="closePopup()">
+      ×
+    </button>
+
+    <span>DETAIL</span>
+
+    <h2 id="popupTitle">
+      상세 정보
+    </h2>
+
+    <p id="popupText">
+      게임 결과에 대한 상세 정보를 확인할 수 있습니다.
+    </p>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   쿠폰 열기 / 닫기
+========================= */
+
+function showCoupon() {
+
+  const coupon = document.getElementById("coupon");
+
+  coupon.style.display =
+    coupon.style.display === "block"
+      ? "none"
+      : "block";
+}
+
+
+/* =========================
+   상세보기
+========================= */
+
+function showDetail(type) {
+
+  const popup = document.getElementById("popup");
+  const title = document.getElementById("popupTitle");
+  const text = document.getElementById("popupText");
+
+  title.textContent = type + " 상세 정보";
+
+  if (type === "정확도") {
+
+    text.textContent =
+      "게임에서 목표를 정확하게 수행한 비율입니다. 정확도 96%를 기록했습니다.";
+
+  } else if (type === "반응 속도") {
+
+    text.textContent =
+      "게임 상황에 얼마나 빠르게 반응했는지를 나타냅니다. 반응 속도 점수는 92%입니다.";
+
+  } else if (type === "게임 기록") {
+
+    text.textContent =
+      "플레이 시간과 점수, 순위 등을 종합한 게임 기록입니다.";
+
+  }
+
+  popup.style.display = "flex";
+}
+
+
+/* =========================
+   팝업 닫기
+========================= */
+
+function closePopup() {
+
+  document.getElementById("popup").style.display = "none";
+
+}
+
+
+/* 팝업 바깥을 눌렀을 때 닫기 */
+
+document.getElementById("popup").addEventListener("click", function(event) {
+
+  if (event.target === this) {
+    closePopup();
+  }
+
+});
+
+
+/* ESC 키로 팝업 닫기 */
+
+document.addEventListener("keydown", function(event) {
+
+  if (event.key === "Escape") {
+    closePopup();
+  }
+
+});
+
+</script>
+
+</body>
+</html>
